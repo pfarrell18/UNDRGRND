@@ -6,25 +6,22 @@
     <title>Document</title>
 </head>
 <body>
-    <button id ="btn-login"></button>
+    <button id ="btn-login">Login</button>
 
 
     <div id ="result"></div>
     <div id ="result-template"></div>
+    <!-- <script src ='https://requirejs.org/docs/release/2.3.5/minified/require.js'></script> -->
     <script src ="/src/getAPI.js" type="text/javascript"></script>
     <script>
-        
+        const calling = (accessToken,response)  =>{
+            console.log(accessToken,response)
+        }
+        getAPI(calling)
     </script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src ="/src/require.js" type="text/javascript"></script>
-    <script id="entry-template" type="text/x-handlebars-template">
-  <div class="entry">
-    <h1>{{Rahad}}</h1>
-    <div class="body">
-      {{body}}
-    </div>
-  </div>
-</script>
+        
+    
+   
 
 </body>
 </html>
