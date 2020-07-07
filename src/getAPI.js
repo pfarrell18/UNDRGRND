@@ -1,9 +1,9 @@
-
+const Handlebars = require('requirejs')
 (function() {
     // GENERATES AUTH LINK TO GIVE UNDRGRND USER PERMISSIONS
     function login(callback) {
         var CLIENT_ID = '933790dc3b564fa6b2ed3d8f09ed440f';
-        var REDIRECT_URI = 'http://jmperezperez.com/spotify-oauth-jsfiddle-proxy/';
+        var REDIRECT_URI = 'https://1undrgrnd.s3.amazonaws.com/frontend/trial.html';
         function getLoginURL(scopes) {
             return 'https://accounts.spotify.com/authorize?client_id=' + CLIENT_ID +
               '&redirect_uri=' + encodeURIComponent(REDIRECT_URI) +
@@ -21,7 +21,7 @@
             height = 730,
             left = (screen.width / 2) - (width / 2),
             top = (screen.height / 2) - (height / 2);
-    
+        // PARSES DATA AND CALLS BACK TOKEN HASH
         window.addEventListener("message", function(event) {
             var hash = JSON.parse(event.data);
             if (hash.type == 'access_token') {
@@ -37,14 +37,14 @@
     }
     // FETCHES USER INFO FROM 'me' API
     function getUserData(accessToken) {
-        return $.ajax({
+         $.ajax({
             url: 'https://api.spotify.com/v1/me',
             headers: {
                'Authorization': 'Bearer ' + accessToken
             }
         });
         
-    }console.log(getUserData)
+    }
 
     // function getFavArtists(accessToken) {
     //     return $.ajax({
@@ -54,7 +54,7 @@
 
     // THIS FUNCTION JUST PUSHES THE USERS INFO TO THE DOM, NOT NECESSARY AT ALL
     var templateSource = document.getElementById('result-template').innerHTML,
-        // template = Handlebars.compile(templateSource),
+        template = Handlebars.compile(templateSource),
         resultsPlaceholder = document.getElementById('result'),
         loginButton = document.getElementById('btn-login');
     
@@ -64,7 +64,7 @@
                 .then(function(response) {
                     loginButton.style.display = 'none';
                     resultsPlaceholder.innerHTML = template(response);
-                    console.log(accessToken)
+    //                 
                 });
             });
     });
