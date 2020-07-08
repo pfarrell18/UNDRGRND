@@ -1,47 +1,6 @@
-/*********** CSS TABLE OF CONTENTS *******************
+/*********** CSS  *******************
 
-|--- 0. Base Styles
-|---------* Spacings
-|---------* Common
 |
-|--- 1. Components Styles
-|---------* Banner
-|---------* Buttons
-|---------* Footers
-|---------* Headers
-|---------* Menu
-|
-|--- 2. Pages Individual Styles
-|---------* Contact
-|---------* Career_Details
-|---------* Career_Page
-|---------* Case_Study
-|---------* Pricing_Pages
-|---------* Blog_Pages
-|---------* Contact_Pages
-|---------* Thank_You
-|---------* 404
-|---------* Terms_page
-|---------* Faq_page
-|---------* coming_soon_page
-|
-|--- 3. Section Base Styles
-|---------* Hero_Area_Styles
-|---------* Brand_Area_Styles 
-|---------* Feature_Area_Styles
-|---------* Content_Area_Styles
-|---------* Testimonail_Area_Styles
-|---------* CTA_Area_Styles
-|---------* Author_Area_Styles
-|---------* Pricing_Area_Styles
-|---------* Review_Area_Styles
-|---------* Service_Area_Styles
-|---------* Case_Area_Styles 
-|---------* Fact_Area_Styles 
-|---------* Contact_Area_Styles
-|---------* Offer_Area_Styles
-|---------* Video_Area_Styles 
-|---------* Team_Area_Styles 
 
 ******************************************************/
 .bg-whisper {
@@ -53,9 +12,6 @@
 }
 
 /*=== Media Query ===*/
-/************************************* 
-    00.Omega Base Styles
-*************************************/
 /*=====================================*/
 /*-- :::: Space Decrease :::: --*/
 /*=====================================*/
