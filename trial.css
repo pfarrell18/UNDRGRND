@@ -1,0 +1,19 @@
+
+
+img{
+    width: 150px;
+    height:150px;
+    border-radius: 50%;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.profile{
+    padding: 10px
+}
+
+
