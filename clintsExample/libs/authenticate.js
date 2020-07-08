@@ -40,7 +40,7 @@ const create_code_challenge = async (v) =>{
     let base64encoded = base64urlencode(hashed);
     return base64encoded;
 }
-const create_verification = async ()=>{
+const create_verification = async (cb)=>{
     let cv = uuid() + uuid() + uuid();
     create_code_challenge(cv)
     .then(cc=>cb(cv, cc))
