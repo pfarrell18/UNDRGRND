@@ -4,8 +4,133 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="trial.css" />
+
 </head>
 <body>
+    <div class = "header"></div>
+    <div class = "container">
+
+    </div>
+    <script>
+
+//this is where the unique auth token would go!
+//this is allowing your to load api in...
+auth_token = "BQD4Vug1ZM7uTtQ-LFncbRTVBv-9xjFSWbtHHHdiMB44q4hBY4q5mDAJCoa5oVyxcjs58WJwCWxuVUYqaHcE7yFsQ72sZkSXo7u0i__F9U_pHqrWbe9aNCULcQeakAOFVOhwsp-Pm8Z1aWwnq0OQ8EVlsDYsg4F73JZfIg4CcqSGeAha"
+var myHeaders = new Headers();
+myHeaders.append("Authorization", `Bearer ${auth_token}`)
+
+var requestOptions = {
+  method: 'GET',
+  headers: myHeaders,
+  redirect: 'follow'
+};
+
+//this function fetches users top artists api and creates an array of top 5 artist IDS
+async function getTopArtist(){
+    const response = await fetch("https://api.spotify.com/v1/me/top/artists?time_range=long_term&limit=5&offset=5", requestOptions);
+    const asJson = await response.json();
+    artistids = [asJson.items[0].id, asJson.items[1].id, asJson.items[2].id, asJson.items[3].id, asJson.items[4].id]
+
+    return artistids;
+}
+
+//this function essentially iterates through suggested artists and weeds out artists that are repeated 
+async function checkRepeatingArtist(json,seedartists){
+    nonrepeats = []
+        for (var i=0; i<json.tracks.length; i++){
+            //repeat sees if any of your suggested artists are actually one of your top 5 artists already
+            //the complicated "tracks"/"artists" thing is how i accessed a certain element due to the organization of spotify's array
+        const repeat = seedartists.includes(json.tracks[i].artists[0].id)
+            //double sees if our array of non-repeated artists (non repeats) already contains your artist.
+        const double = nonrepeats.includes(json.tracks[i].artists[0].id)
+            // if it meets both of these criteria, it appends it.
+            if (repeat == false&& double ==false){
+                nonrepeats.push(json.tracks[i].artists[0].id)
+        
+        }
+    }
+    return nonrepeats
+}
+
+//this function checks the popularity of our narrowed down list of non repeated artists
+//it takes a list of artist ids and checks popularity
+async function checkPopularity(norepeat){
+
+    unpop = []
+    for (var i =0; i<norepeat.length; i++){
+        //this loads the spotify artist api and looks up the artist with that id.
+        const response1 = await fetch(`https://api.spotify.com/v1/artists/${norepeat[i]}`, requestOptions)
+        const asJson1 = await response1.json();
+        //this is number of followers for that artist.
+        followers =  asJson1.followers.total
     
+        //if the followers are lower than 250k (can be changed), we push it to the unpop array which is returned
+        if (followers <250000){
+        unpop.push(asJson1.id)
+        }
+    }
+
+    return unpop
+    
+}
+async function getSimiliarArtist(seedartists){
+    const response = await fetch(`https://api.spotify.com/v1/recommendations?seed_artists=${seedartists[0]}%2C${seedartists[1]}%2C${seedartists[2]}%2C${seedartists[3]}%2C${seedartists[4]}&max_popularity=30&limit=100`, requestOptions)
+    const asJson = await response.json();
+    
+    //runs both functions,
+   const norepeat = await checkRepeatingArtist(asJson,seedartists)
+   const checkpop = await checkPopularity(norepeat)
+
+//creates a div where everything will be pushed
+   const div = document.getElementsByClassName("container")
+
+//creates a div with an error message if no artists are returned 
+   if (checkpop.length===0){
+    const errormsg = document.createElement ("div")
+    errormsg.innerHTML = "We are having a bit of trouble processing your data. Please use our manual search bar instead!"
+    div[0].append(errormsg)
+   }
+
+   //creates a header with "your artists are"
+   header = document.getElementsByClassName("header")
+   headertext = document.createElement("h2")
+   headertext.innerHTML = "Your UNDR GRND artists are:"
+   header[0].append(headertext)
+
+//iterates through all artists that meet criteria and creates a div with their info
+//it does this by calling the artist data api and uses their id number from check pop.
+//if you'd like to have like 5 people instead of 20, simply change checkpop.length. It might error out if there are too few artists.
+    for (var i=0; i<checkpop.length; i++){
+    const profile = document.createElement("div")
+    profile.classList.add("profile")
+    artistId = checkpop[i]
+    const response1 = await fetch(`https://api.spotify.com/v1/artists/${artistId}`, requestOptions)
+    const asJson1 = await response1.json();
+    const picUrl = asJson1.images[0].url
+    const profpic = document.createElement("img")
+    profpic.setAttribute("src", picUrl)
+    profpic.classList.add("underground")
+    const name = document.createElement("div")
+    name.innerText =`${asJson1.name}`
+    profile.append(profpic, name)
+    div[0].append(profile)
+}
+
+
+    return asJson.tracks[0].artists[0].name;
+}
+
+//this function runs both functions and uses the seedartists as the input for sumilar artists 
+async function main(){
+    const seedartists = await getTopArtist();
+    const similiarArtist = await getSimiliarArtist(seedartists);
+}
+
+//this initiates all functions running
+main()
+
+
+    </script>
 </body>
 </html>
