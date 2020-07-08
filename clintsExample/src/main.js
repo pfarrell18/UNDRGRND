@@ -12,9 +12,7 @@ if(!token || token === 'undefined' || expires_on === 'NaN' || Number(expires_on)
     root.append(loginButton);
 } else {
 
-//Here you can start you app with fetch and all that using the token etc
-//you have to enable this chrome extension for it to work which you cannot expect users to do.
-//https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en
+    //Here you can start you app with fetch and all that using the token etc
     fetch(`https://api.spotify.com/v1/me`, {
       headers:{
           'Authorization':`Bearer ${token}`
