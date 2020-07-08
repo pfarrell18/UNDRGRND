@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="trial.css">
+
+</head>
+<body>
+    <div class = "trial">
+
+    </div>
+    
+    <script>
+
+
+auth_token = "BQB5vadvMnE4pggb7hDsyPG-oIEywhoJQ2rAFAXlFfiuGtk-uX9PnyTt8KxtVcxwPayyYVmwHQWyJ3uvTQXElExPRh74otVD-e4sLgDYZQDtfX87GN9uP87_HXPhZ-P2uKFw1MgfvDvDR-fQ9WR3piMYRgp3xTSZ4J7umHXMLl47MwXk"
+var myHeaders = new Headers();
+myHeaders.append("Authorization", `Bearer ${auth_token}`)
+
+var requestOptions = {
+  method: 'GET',
+  headers: myHeaders,
+  redirect: 'follow'
+};
+
+async function getTopArtist(){
+    const response = await fetch("https://api.spotify.com/v1/me/top/artists?time_range=long_term&limit=1&offset=5", requestOptions);
+    const asJson = await response.json();
+    
+    const container= document.createElement("div")
+    
+    picUrl = asJson.items[0].images[0].url
+    const profpic = document.createElement("img")
+    profpic.setAttribute("src", picUrl)
+    profpic.classList.add("topartist")
+
+    const name = document.createElement("div")
+    name.innerText =`Your top artist is ${asJson.items[0].name}`
+   
+ 
+    container.append(profpic, name)
+    const div = document.getElementsByClassName("trial")
+    div[0].append(container)
+
+    return asJson.items[0].id;
+}
+
+async function getSimiliarArtist(seedartist){
+   const response = await fetch(`https://api.spotify.com/v1/recommendations?seed_artists=${seedartist}&seed_tracks=0c6xIDDpzE81m2q797ordA&max_popularity=20&limit=1`, requestOptions)
+   const asJson = await response.json();
+   
+
+    artistId = asJson.tracks[0].artists[0].id
+    
+    const response1 = await fetch(`https://api.spotify.com/v1/artists/${artistId}`, requestOptions)
+    const asJson1 = await response1.json();
+
+    const container= document.createElement("div")
+    
+    const picUrl = asJson1.images[0].url
+    const profpic = document.createElement("img")
+    profpic.setAttribute("src", picUrl)
+    profpic.classList.add("underground")
+   
+    const name = document.createElement("div")
+    name.innerText =`Your UNDR GRND artist is ${asJson.tracks[0].artists[0].name}`
+    
+    container.append(profpic, name)
+    const div = document.getElementsByClassName("trial")
+    div[0].append(container)
+
+    return asJson.tracks[0].artists[0].name;
+}
+
+async function main(){
+    // const toArtist1 = await getTopArtist();
+    const toArtist = "3WrFJ7ztbogyGnTHbHJFl2"
+    const similiarArtist = await getSimiliarArtist(toArtist);
+    console.log(toArtist);
+    console.log(similiarArtist)
+}
+
+main()
+
+
+// let seedartist= "4NHQUGzhtTLFvgF5SZesLK"
+
+//this finds a low-popularity similar artist based on their seed artist number.
+
+    
+    </script>
+</body>
+</html>
