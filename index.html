@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>UNDRGRND</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--===============================================================================================-->
+		<link rel="icon" type="image/png" href="images/icons/undr_grnd_fav.ico" />
+		<!--===============================================================================================-->
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="vendor/bootstrap/css/bootstrap.min.css"
+		/>
+		<!--===============================================================================================-->
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="fonts/font-awesome-4.7.0/css/font-awesome.min.css"
+		/>
+		<!--===============================================================================================-->
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="fonts/iconic/css/material-design-iconic-font.min.css"
+		/>
+		<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css" />
+		<!--===============================================================================================-->
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="vendor/animsition/css/animsition.min.css"
+		/>
+		<!--===============================================================================================-->
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="vendor/select2/select2.min.css"
+		/>
+		<!--===============================================================================================-->
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="vendor/daterangepicker/daterangepicker.css"
+		/>
+		<!--===============================================================================================-->
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="vendor/noui/nouislider.min.css"
+		/>
+		<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="css/util.css" />
+		<link rel="stylesheet" type="text/css" href="css/main.css" />
+		<!--===============================================================================================-->
+	</head>
+	<body>
+		<div class="container-contact100">
+			<div class="wrap-contact100">
+				<form class="contact100-form validate-form">
+					<img class="logo" src="./images/undrgrnd_logo.png" alt="" srcset="" />
+					<span class="contact100-form-title">
+						Welcome To <br />
+						UNDR<br />GRND <br />
+						<span>
+							<img
+								class="spotify_logo2"
+								src="/images/spotify_logo3.png"
+								alt=""
+							/>
+							<button class="spotify-login">Login With Spotify</button>
+						</span>
+					</span>
+
+					<div class="spotify_logo">
+						<img src="/images/spotify_logo3.png" alt="" />
+					</div>
+
+					<span class="contact100-form-sub-title">
+						The only place where you'll find underground artists based on your
+						Spotify listening history
+					</span>
+
+					<div class="wrap-input100 input100-select bg1">
+						<span class="label-input100">TimeFrame *</span>
+						<div>
+							<select class="js-select2" name="service">
+								<option>History Timeline</option>
+								<option>Beginning of Time</option>
+								<option>6 Months</option>
+								<option>4 Weeks</option>
+							</select>
+							<div class="dropDownSelect2"></div>
+						</div>
+					</div>
+
+					<div class="w-full dis-none js-show-service">
+						<div class="wrap-contact100-form-radio">
+							<span class="label-input100">Which Genre Of Music?</span>
+
+							<div class="contact100-form-radio m-t-15">
+								<input
+									class="input-radio100"
+									id="radio1"
+									type="radio"
+									name="type-product"
+									value="physical"
+									checked="checked"
+								/>
+								<label class="label-radio100" for="radio1">
+									Hip Hop
+								</label>
+							</div>
+
+							<div class="contact100-form-radio">
+								<input
+									class="input-radio100"
+									id="radio2"
+									type="radio"
+									name="type-product"
+									value="digital"
+								/>
+								<label class="label-radio100" for="radio2">
+									Rock
+								</label>
+							</div>
+
+							<div class="contact100-form-radio">
+								<input
+									class="input-radio100"
+									id="radio3"
+									type="radio"
+									name="type-product"
+									value="service"
+								/>
+								<label class="label-radio100" for="radio3">
+									R&B
+								</label>
+							</div>
+
+							<div class="contact100-form-radio">
+								<input
+									class="input-radio100"
+									id="radio4"
+									type="radio"
+									name="type-product"
+									value="service"
+								/>
+								<label class="label-radio100" for="radio4">
+									Country
+								</label>
+							</div>
+
+							<div class="contact100-form-radio">
+								<input
+									class="input-radio100"
+									id="radio5"
+									type="radio"
+									name="type-product"
+									value="service"
+								/>
+								<label class="label-radio100" for="radio5">
+									Pop
+								</label>
+							</div>
+
+							<div class="contact100-form-radio">
+								<input
+									class="input-radio100"
+									id="radio6"
+									type="radio"
+									name="type-product"
+									value="service"
+								/>
+								<label class="label-radio100" for="radio6">
+									Jazz
+								</label>
+							</div>
+						</div>
+
+						<div class="wrap-contact100-form-range">
+							<span class="label-input100"
+								>Minimum & Maximum Amount of Followers *</span
+							>
+
+							<div class="contact100-form-range-value">
+								<span id="value-lower"></span> - <span id="value-upper"></span>
+								<input type="text" name="from-value" />
+								<input type="text" name="to-value" />
+							</div>
+
+							<div class="contact100-form-range-bar">
+								<div id="filter-bar"></div>
+							</div>
+						</div>
+					</div>
+
+					<!-- <div class="wrap-input100 validate-input bg0 rs1-alert-validate" data-validate = "Please Type Your Message">
+					<span class="label-input100">Message</span>
+					<textarea class="input100" name="message" placeholder="Your message here..."></textarea>
+				</div> -->
+
+					<div class="container-contact100-form-btn">
+						<button class="contact100-form-btn">
+							<span>
+								Submit
+								<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+							</span>
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<!--===============================================================================================-->
+		<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+		<!--===============================================================================================-->
+		<script src="vendor/animsition/js/animsition.min.js"></script>
+		<!--===============================================================================================-->
+		<script src="vendor/bootstrap/js/popper.js"></script>
+		<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+		<!--===============================================================================================-->
+		<script src="vendor/select2/select2.min.js"></script>
+		<script>
+			$(".js-select2").each(function () {
+				$(this).select2({
+					minimumResultsForSearch: 20,
+					dropdownParent: $(this).next(".dropDownSelect2"),
+				});
+
+				$(".js-select2").each(function () {
+					$(this).on("select2:close", function (e) {
+						if ($(this).val() == "Please chooses") {
+							$(".js-show-service").slideUp();
+						} else {
+							$(".js-show-service").slideUp();
+							$(".js-show-service").slideDown();
+						}
+					});
+				});
+			});
+		</script>
+		<!--===============================================================================================-->
+		<script src="vendor/daterangepicker/moment.min.js"></script>
+		<script src="vendor/daterangepicker/daterangepicker.js"></script>
+		<!--===============================================================================================-->
+		<!--===============================================================================================-->
+		<script src="vendor/noui/nouislider.min.js"></script>
+
+		<!--===============================================================================================-->
+		<script src="js/main.js"></script>
+	</body>
+</html>
