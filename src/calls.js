@@ -43,7 +43,7 @@ export async function checkPopularity(norepeat){
         // console.log(response1)
         const asJson1 = await response1.json();
         //this is number of followers for that artist.
-        const followers =  asJson1.followers.total
+        const followers =  asJson1.followers.total;
         console.log(followers)
         //if the followers are lower than 250k (can be changed), we push it to the unpop array which is returned
         if (followers <250000){
