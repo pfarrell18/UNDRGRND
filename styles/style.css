@@ -4,12 +4,12 @@
 }
 video{
     width: 100%;
-    position: fixed;
+    /* position: fixed; */
     z-index: -1;
 }
 body{
     margin: 0;
-    background-image: url('video.mp4');
+    height: 100%;
 }
 #content {
     position: absolute;
