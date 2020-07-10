@@ -1,8 +1,12 @@
-/** vim: et:ts=4:sw=4:sts=4
- * license RequireJS 2.3.6 Copyright jQuery Foundation and other contributors.
- * Released under MIT license, https://github.com/requirejs/requirejs/blob/master/LICENSE
- */
-import {clientId, redirectLogin, redirectComplete} from "./config.js";
+// /** vim: et:ts=4:sw=4:sts=4
+//  * license RequireJS 2.3.6 Copyright jQuery Foundation and other contributors.
+//  * Released under MIT license, https://github.com/requirejs/requirejs/blob/master/LICENSE
+//  */
+import {clientId, redirectLogin, redirectComplete,scope} from "./config.js";
+// import getTop from 
+// import {topArtists,topArts} from "./main.js"
+// import getSimiliarArtist from "./getArtists.js"
+
 let canStart = false;
 
 const urlParams = new URLSearchParams(window.location.search);  
@@ -68,7 +72,7 @@ if(!code_challenge || !code_verifier){
 }
 
 const start = ()=>{
-    window.location = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirectLogin}&code_challenge_method=S256&code_challenge=${code_challenge}`
+    window.location = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&scope=${scope}&redirect_uri=${redirectLogin}&code_challenge_method=S256&code_challenge=${code_challenge}`
 }
 
 export default () =>{
@@ -108,9 +112,11 @@ const authenticate = () =>{
         localStorage.setItem('expires_on', new Date().getTime() + (json.expires_in * 1000))// the timestamp when it will no longer be valid
         window.location = redirectComplete;
     })
+    
 }
-
 //if the url string is acceptLogin
 if(urlParams.get('acceptLogin') && code){
-    authenticate()
+    authenticate();
+    topArtists();
+
 }

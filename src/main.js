@@ -1,5 +1,6 @@
 import authenticate from "./auth.js";
-
+import getTopArtist from "./calls.js";
+import getSimiliarArtist from "./getArtists.js"
 let root = document.querySelector('#content');
 
 let token = localStorage.getItem('access_token');
@@ -23,3 +24,8 @@ if(!token || token === 'undefined' || expires_on === 'NaN' || Number(expires_on)
     .catch(error=>console.log(error))
 
 }
+async function main(){
+    const seedartists = await getTopArtist();
+    const similiarArtist = await getSimiliarArtist(seedartists);
+}
+main()
