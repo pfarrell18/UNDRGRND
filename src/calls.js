@@ -1,23 +1,6 @@
 // import authenticate from "./auth.js";
 
-export var myHeaders = new Headers();
-export let token = localStorage.getItem('access_token')
 
-myHeaders.append("Authorization", `Bearer ${token}`)
-
-export var requestOptions = {
-    method: 'GET',
-    headers: myHeaders,
-    redirect: 'follow'
-};
-export default async function getTopArtist(){
-    const response = await fetch("https://api.spotify.com/v1/me/top/artists?time_range=long_term&limit=5&offset=5", requestOptions);
-    const asJson = await response.json();
-    console.log(asJson)
-    const artistids = [asJson.items[0].id, asJson.items[1].id, asJson.items[2].id, asJson.items[3].id, asJson.items[4].id]
-    console.log(artistids)
-    return artistids;
-}
 export async function checkRepeatingArtist(json,seedartists){
     let nonrepeats = []
     for (var i=0; i<json.tracks.length; i++){
@@ -51,23 +34,86 @@ export async function checkPopularity(norepeat){
     return unpop 
 }
 
-// genre = “pop”
-// async function genreSearch(){
-//     const response = await fetch(`https://api.spotify.com/v1/recommendations?limit=100&market=US&seed_genres=${genre}`, requestOptions)
-//     const asJson = await response.json();
-//     all_artists = []
-//     for (var i=0; i< asJson.tracks.length; i++){
-//     all_artists.push(asJson.tracks[i].artists[0].id)
-//     }
-//     checkpop = await checkPopularity(all_artists)
-//     generateArtistImages(checkpop)
-// }
+export async function checkIfUserFollows(idarray){
+    // let asString = idarray.join("%2C")
+    
+    
+    new_artists = []
+    for (var i=0; i<idarray.length; i++){
+    const response = await fetch(`https://api.spotify.com/v1/me/following/contains?type=artist&ids=${idarray[i]}`, requestOptions)
+    const asJson = await response.json(); 
+    
+    if(asJson[0]==false){
+        new_artists.push(idarray[i])
+    }
+    }
 
-// export async function (){
-//     const response = await fetch("https://api.spotify.com/v1/me/top/artists?time_range=long_term&limit=5&offset=5", requestOptions);
-//     const asJson = await response.json();
-//     console.log(asJson)
-//     const artistids = [asJson.items[0].id, asJson.items[1].id, asJson.items[2].id, asJson.items[3].id, asJson.items[4].id]
-//     console.log(artistids)
-//     return artistids;
-// }
+    return new_artists
+
+}
+
+
+export async function generateArtistImages(checkpop){
+
+    //creates a div where everything will be pushed
+        const div = document.getElementsByClassName("container")
+    
+    //creates a div with an error message if no artists are returned 
+        if (checkpop.length===0){
+            const errormsg = document.createElement ("div")
+            errormsg.innerHTML = "We are having a bit of trouble processing your data. Please use our manual search bar instead!"
+            div[0].append(errormsg)
+        }
+    
+       //creates a header with "your artists are"
+        header = document.getElementsByClassName("header")
+        headertext = document.createElement("h2")
+        headertext.innerHTML = "Your UNDR GRND artists are:"
+        header[0].append(headertext)
+    
+        var element = document.getElementsByClassName("spinner");
+        element[0].children[0].innerHTML = ""
+        // element[0].parentNode.removeChild(element)
+    //iterates through all artists that meet criteria and creates a div with their info
+    //it does this by calling the artist data api and uses their id number from check pop.
+    //if you'd like to have like 5 people instead of 20, simply change checkpop.length. It might error out if there are too few artists.
+        for (var i=0; i<checkpop.length; i++){
+    
+        const profile = document.createElement("div")
+        profile.classList.add("profile")
+        artistId = checkpop[i]
+        const response1 = await fetch(`https://api.spotify.com/v1/artists/${artistId}`, requestOptions)
+        const asJson1 = await response1.json();
+        
+        image = "no image loaded"
+        if (asJson1.images.length ===0){
+            const profpic = document.createElement("img")
+            profpic.setAttribute("src", ".images/undrgrnd_logo.png")
+            image = profpic
+        }
+        
+        if (asJson1.images.length >1){
+            const picUrl = asJson1.images[0].url
+            const profpic = document.createElement("img")
+            profpic.setAttribute("src", picUrl)
+            profpic.classList.add("underground") 
+            image = profpic
+        }
+        
+        const name = document.createElement("div")
+        name.classList.add("front")
+        name.innerText =`${asJson1.name}`    
+        name.append(image)
+    
+        const back = document.createElement("div");
+        back.classList.add('back', 'hidden');
+        followers_in_thousands = Math.round(asJson1.followers.total/1000)
+        back.innerHTML= `${asJson1.name}'s follower total: ${followers_in_thousands}K`
+    
+        profile.append(name, back)
+    
+        div[0].append(profile)
+    }
+    
+    
+    }
