@@ -7,15 +7,33 @@ export async function checkRepeatingArtist(json,seedartists){
     for (var i=0; i<json.tracks.length; i++){
         //repeat sees if any of your suggested artists are actually one of your top 5 artists already
         //the complicated "tracks"/"artists" thing is how i accessed a certain element due to the organization of spotify's array
-    const repeat = seedartists.includes(json.tracks[i].artists[0].id)
-        //double sees if our array of non-repeated artists (non repeats) already contains your artist.
-    const double = nonrepeats.includes(json.tracks[i].artists[0].id)
-        // if it meets both of these criteria, it appends it.
-        if (repeat == false&& double ==false){
-            nonrepeats.push(json.tracks[i].artists[0].id)
-        }
+        const repeat = seedartists.includes(json.tracks[i].artists[0].id)
+            //double sees if our array of non-repeated artists (non repeats) already contains your artist.
+        const double = nonrepeats.includes(json.tracks[i].artists[0].id)
+            // if it meets both of these criteria, it appends it.
+            if (repeat == false&& double ==false){
+                nonrepeats.push(json.tracks[i].artists[0].id)
+            }
     }
+    console.log(nonrepeats)
     return nonrepeats
+}
+export async function checkIfUserFollows(idarray){
+    // let asString = idarray.join("%2C")
+    
+    
+    let new_artists = []
+    for (var i=0; i<idarray.length; i++){
+    const response = await fetch(`https://api.spotify.com/v1/me/following/contains?type=artist&ids=${idarray[i]}`, requestOptions)
+    const asJson = await response.json(); 
+    console.log(asJson)
+    if(asJson[0]==false){
+        new_artists.push(idarray[i])
+    }
+    }
+    console.log(new_artists)
+    return new_artists
+    
 }
 export async function checkPopularity(norepeat){
     let unpop = []
@@ -26,32 +44,18 @@ export async function checkPopularity(norepeat){
         const asJson1 = await response1.json();
         //this is number of followers for that artist.
         const followers =  asJson1.followers.total
-        // console.log(followers)
+        console.log(followers)
         //if the followers are lower than 250k (can be changed), we push it to the unpop array which is returned
         if (followers <250000){
         unpop.push(asJson1.id)
+        console.log(asJson1)
         }
     }
+    
     return unpop 
 }
 
-export async function checkIfUserFollows(idarray){
-    // let asString = idarray.join("%2C")
-    
-    
-    let new_artists = []
-    for (var i=0; i<idarray.length; i++){
-    const response = await fetch(`https://api.spotify.com/v1/me/following/contains?type=artist&ids=${idarray[i]}`, requestOptions)
-    const asJson = await response.json(); 
-    
-    if(asJson[0]==false){
-        new_artists.push(idarray[i])
-    }
-    }
 
-    return new_artists
-
-}
 
 
 export async function generateArtistImages(checkpop){
@@ -72,24 +76,25 @@ export async function generateArtistImages(checkpop){
         headertext.innerHTML = "Your UNDR GRND artists are:"
         header[0].append(headertext)
     
-        var element = document.getElementsByClassName("spinner");
-        element[0].children[0].innerHTML = ""
+        var element = document.querySelector("#spinner");
+        // element[0].children[0].innerHTML = ""
         // element[0].parentNode.removeChild(element)
     //iterates through all artists that meet criteria and creates a div with their info
     //it does this by calling the artist data api and uses their id number from check pop.
     //if you'd like to have like 5 people instead of 20, simply change checkpop.length. It might error out if there are too few artists.
         for (var i=0; i<checkpop.length; i++){
+
     
         const profile = document.createElement("div")
         profile.classList.add("profile")
-        artistId = checkpop[i]
+        let artistId = checkpop[i]
         const response1 = await fetch(`https://api.spotify.com/v1/artists/${artistId}`, requestOptions)
         const asJson1 = await response1.json();
         
-        image = "no image loaded"
+        var image = "no image loaded"
         if (asJson1.images.length ===0){
             const profpic = document.createElement("img")
-            profpic.setAttribute("src", ".images/undrgrnd_logo.png")
+            profpic.setAttribute("src", ".images/trans_logo.png")
             image = profpic
         }
         
@@ -108,12 +113,13 @@ export async function generateArtistImages(checkpop){
     
         const back = document.createElement("div");
         back.classList.add('back', 'hidden');
-        followers_in_thousands = Math.round(asJson1.followers.total/1000)
+        const followers_in_thousands = Math.round(asJson1.followers.total/1000)
         back.innerHTML= `${asJson1.name}'s follower total: ${followers_in_thousands}K`
     
         profile.append(name, back)
     
-        div[0].append(profile)
+        element.append()
+
     }
     
     
