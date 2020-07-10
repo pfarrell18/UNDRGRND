@@ -12,7 +12,7 @@ body{
     background-image: url('video.mp4');
 }
 #content {
-    position: fixed;
+    position: absolute;
     bottom: 0;
     background-image: ;
     color: #f1f1f1;
@@ -56,3 +56,62 @@ button{
     0 100px 80px rgba(0, 0, 0, 0.12)
 
 }
+mg{
+    width: 150px;
+    height:150px;
+    border-radius: 50%;
+}
+.container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.profile{
+    display:flex;
+    padding: 10 px 10px;
+    width: 150px;
+    text-align: center;
+    flex-direction:column;
+    justify-content:space-around
+}
+.hidden{
+    display: none
+}
+.lds-facebook {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    align-content: center;
+  }
+  /* this is for the loading bar  */
+  .lds-facebook div {
+    display: inline-block;
+    position: absolute;
+    left: 8px;
+    width: 16px;
+    background:yellow;
+    animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+  }
+  .lds-facebook div:nth-child(1) {
+    left: 8px;
+    animation-delay: -0.24s;
+  }
+  .lds-facebook div:nth-child(2) {
+    left: 32px;
+    animation-delay: -0.12s;
+  }
+  .lds-facebook div:nth-child(3) {
+    left: 56px;
+    animation-delay: 0;
+  }
+  @keyframes lds-facebook {
+    0% {
+      top: 8px;
+      height: 64px;
+    }
+    50%, 100% {
+      top: 24px;
+      height: 32px;
+    }
+  }
