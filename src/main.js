@@ -1,6 +1,6 @@
 import authenticate from "./auth.js";
-import getTopArtist from "./calls.js";
-import getSimiliarArtist from "./getArtists.js"
+// import getTopArtist from "./calls.js";
+import {getSimiliarArtist,getTopArtist} from "./getArtists.js"
 let root = document.querySelector('#content');
 
 let token = localStorage.getItem('access_token');

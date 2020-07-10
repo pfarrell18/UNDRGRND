@@ -3,7 +3,7 @@ import {checkRepeatingArtist,checkPopularity, checkIfUserFollows, generateArtist
 
 var artistId;
 
-export default async function getTopArtist(){
+export async function getTopArtist(){
     const response = await fetch("https://api.spotify.com/v1/me/top/artists?time_range=long_term&limit=5&offset=5", requestOptions);
     const asJson = await response.json();
     console.log(asJson)
@@ -12,7 +12,7 @@ export default async function getTopArtist(){
     return artistids;
 }
     
-export default async function getSimiliarArtist(seedartists){
+export async function getSimiliarArtist(seedartists){
     const response = await fetch(`https://api.spotify.com/v1/recommendations?seed_artists=${seedartists[0]}%2C${seedartists[1]}%2C${seedartists[2]}%2C${seedartists[3]}%2C${seedartists[4]}&max_popularity=30&limit=100`, requestOptions)
     const asJson = await response.json();
     
