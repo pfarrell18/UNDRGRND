@@ -40,7 +40,7 @@ export async function getSimiliarArtist(seedartists){
 export async function main(){
     const seedartists = await getTopArtist();
     const similiarArtist = await getSimiliarArtist(seedartists);
-    console.log(similiarArtist)
+    console.log(seedartists)
 }
 
 //this initiates all functions running
