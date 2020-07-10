@@ -4,7 +4,7 @@
 //  */
 import {clientId, redirectLogin, redirectComplete,scope} from "./config.js";
 // import getTop from 
-// import {topArtists,topArts} from "./main.js"
+// import topArtists from "./main.js"
 // import getSimiliarArtist from "./getArtists.js"
 
 let canStart = false;

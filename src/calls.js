@@ -1,4 +1,5 @@
 // import authenticate from "./auth.js";
+import {requestOptions} from "./initialfetch.js"
 
 
 export async function checkRepeatingArtist(json,seedartists){
@@ -38,7 +39,7 @@ export async function checkIfUserFollows(idarray){
     // let asString = idarray.join("%2C")
     
     
-    new_artists = []
+    let new_artists = []
     for (var i=0; i<idarray.length; i++){
     const response = await fetch(`https://api.spotify.com/v1/me/following/contains?type=artist&ids=${idarray[i]}`, requestOptions)
     const asJson = await response.json(); 
@@ -66,8 +67,8 @@ export async function generateArtistImages(checkpop){
         }
     
        //creates a header with "your artists are"
-        header = document.getElementsByClassName("header")
-        headertext = document.createElement("h2")
+        let header = document.getElementsByClassName("header")
+        const headertext = document.createElement("h2")
         headertext.innerHTML = "Your UNDR GRND artists are:"
         header[0].append(headertext)
     

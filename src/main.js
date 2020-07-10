@@ -1,7 +1,7 @@
 import authenticate from "./auth.js";
 // import getTopArtist from "./calls.js";
 import {getSimiliarArtist,getTopArtist} from "./getArtists.js"
-let root = document.querySelector('#content');
+const root = document.querySelector("#content");
 
 let token = localStorage.getItem('access_token');
 let expires_on = localStorage.getItem('expires_on');//expires on is when the token expires as a timestamp
