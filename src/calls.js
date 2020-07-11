@@ -1,5 +1,6 @@
 // import authenticate from "./auth.js";
-import {requestOptions} from "./initialfetch.js"
+import {requestOptions,myHeaders} from "./initialfetch.js"
+
 
 
 
@@ -16,7 +17,6 @@ export async function checkRepeatingArtist(json,seedartists){
                 nonrepeats.push(json.tracks[i].artists[0].id)
             }
     }
-    console.log(nonrepeats)
     return nonrepeats
 }
 export async function checkIfUserFollows(idarray){
@@ -51,7 +51,7 @@ export async function checkPopularity(norepeat){
         }
     }
     
-    return unpop 
+    return unpop; 
 }
 
 
@@ -60,70 +60,100 @@ export async function checkPopularity(norepeat){
 export async function generateArtistImages(checkpop){
 
     //creates a div where everything will be pushed
-        const div = document.getElementsByClassName("container")
+        const div = document.createElement("div")
+        div.classList.add('content')
     
     //creates a div with an error message if no artists are returned 
         if (checkpop.length===0){
-            const errormsg = document.createElement ("div")
-            errormsg.innerHTML = "We are having a bit of trouble processing your data. Please use our manual search bar instead!"
-            div[0].append(errormsg)
-        }
+            let errHead= document.createElement('h2');
+            errHead.innerHTML = "Hmmm, You have better taste in music than we imagined!"
+            div.append(errHead)
+            let p = document.createElement('p') 
+            p.innerHTML = "Try to narrow your options by using the manual search below!"
+            div.append(p)
+ 
+        } else {  
+            // *****CURRENTLY HAVING TROUBLE HERE, RUNNING THIS FUNCTION SOLO ON LINE 154.WONT CREATE ELEMENTS AND POPULATE HTML PAGE*****
+            let trueHead= document.createElement('h2');
+            trueHead.innerHTML = 'Your UNDRGRND Artists Are:'
+            div.append(trueHead)    
+            
+            
+            for (let i=0;i<checkpop.length;i++) {
+                const profileCard = document.createElement("div")
+                profileCard.classList.add("profile-cards")
+                let artistId = checkpop[i]
+                const response1 = await fetch(`https://api.spotify.com/v1/artists/${artistId}`, requestOptions)
+                const asJson1 = await response1.json();
+                console.log(asJson1)
+            }
+
+
+       
+            //   ********* PRIYANKA I SAVED YOUR CODE BELOW FOR REFERENCE, ********
+               
+        
+        
+        
+        //}
+    //    //creates a header with "your artists are"
+    //     let header = document.getElementsByClassName("header")
+    //     const headertext = document.createElement("h2")
+    //     div.innerHTML = "Your UNDR GRND artists are:"
+    //     header[0].append(headertext)
     
-       //creates a header with "your artists are"
-        let header = document.getElementsByClassName("header")
-        const headertext = document.createElement("h2")
-        headertext.innerHTML = "Your UNDR GRND artists are:"
-        header[0].append(headertext)
-    
-        var element = document.querySelector("#spinner");
-        // element[0].children[0].innerHTML = ""
-        // element[0].parentNode.removeChild(element)
-    //iterates through all artists that meet criteria and creates a div with their info
-    //it does this by calling the artist data api and uses their id number from check pop.
-    //if you'd like to have like 5 people instead of 20, simply change checkpop.length. It might error out if there are too few artists.
-        for (var i=0; i<checkpop.length; i++){
+    //     var element = document.querySelector("#spinner");
+    //     // element[0].children[0].innerHTML = ""
+    //     // element[0].parentNode.removeChild(element)
+    // //iterates through all artists that meet criteria and creates a div with their info
+    // //it does this by calling the artist data api and uses their id number from check pop.
+    // //if you'd like to have like 5 people instead of 20, simply change checkpop.length. It might error out if there are too few artists.
+    //     for (var i=0; i<checkpop.length; i++){
 
     
-        const profile = document.createElement("div")
-        profile.classList.add("profile")
-        let artistId = checkpop[i]
-        const response1 = await fetch(`https://api.spotify.com/v1/artists/${artistId}`, requestOptions)
-        const asJson1 = await response1.json();
+    //     const profile = document.createElement("div")
+    //     profile.classList.add("profile")
+    //     let artistId = checkpop[i]
+    //     const response1 = await fetch(`https://api.spotify.com/v1/artists/${artistId}`, requestOptions)
+    //     const asJson1 = await response1.json();
         
-        var image = "no image loaded"
-        if (asJson1.images.length ===0){
-            const profpic = document.createElement("img")
-            profpic.setAttribute("src", ".images/trans_logo.png")
-            image = profpic
-        }
+    //     var image = "no image loaded"
+    //     if (asJson1.images.length ===0){
+    //         const profpic = document.createElement("img")
+    //         profpic.setAttribute("src", ".images/trans_logo.png")
+    //         image = profpic
+    //     }
         
-        if (asJson1.images.length >1){
-            const picUrl = asJson1.images[0].url
-            const profpic = document.createElement("img")
-            profpic.setAttribute("src", picUrl)
-            profpic.classList.add("underground") 
-            image = profpic
-        }
+    //     if (asJson1.images.length >1){
+    //         const picUrl = asJson1.images[0].url
+    //         const profpic = document.createElement("img")
+    //         profpic.setAttribute("src", picUrl)
+    //         profpic.classList.add("underground") 
+    //         image = profpic
+    //     }
         
-        const name = document.createElement("div")
-        name.classList.add("front")
-        name.innerText =`${asJson1.name}`    
-        name.append(image)
+    //     const name = document.createElement("div")
+    //     name.classList.add("front")
+    //     name.innerText =`${asJson1.name}`    
+    //     name.append(image)
     
-        const back = document.createElement("div");
-        back.classList.add('back', 'hidden');
-        const followers_in_thousands = Math.round(asJson1.followers.total/1000)
-        back.innerHTML= `${asJson1.name}'s follower total: ${followers_in_thousands}K`
+    //     const back = document.createElement("div");
+    //     back.classList.add('back', 'hidden');
+    //     const followers_in_thousands = Math.round(asJson1.followers.total/1000)
+    //     back.innerHTML= `${asJson1.name}'s follower total: ${followers_in_thousands}K`
     
-        profile.append(name, back)
+    //     profile.append(name, back)
     
-        element.append()
+    //     element.append()
 
     }
     
     
-    }
-
-export default function(x){
-    console.log(x)
 }
+
+generateArtistImages(["4K9aclpXgCPNFGEqRlFPal", "3hOdow4ZPmrby7Q1wfPLEy"])
+
+
+
+
+
