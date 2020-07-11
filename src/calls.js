@@ -2,6 +2,7 @@
 import {requestOptions} from "./initialfetch.js"
 
 
+
 export async function checkRepeatingArtist(json,seedartists){
     let nonrepeats = []
     for (var i=0; i<json.tracks.length; i++){
@@ -26,7 +27,7 @@ export async function checkIfUserFollows(idarray){
     for (var i=0; i<idarray.length; i++){
     const response = await fetch(`https://api.spotify.com/v1/me/following/contains?type=artist&ids=${idarray[i]}`, requestOptions)
     const asJson = await response.json(); 
-    console.log(asJson)
+
     if(asJson[0]==false){
         new_artists.push(idarray[i])
     }
@@ -44,11 +45,9 @@ export async function checkPopularity(norepeat){
         const asJson1 = await response1.json();
         //this is number of followers for that artist.
         const followers =  asJson1.followers.total;
-        console.log(followers)
         //if the followers are lower than 250k (can be changed), we push it to the unpop array which is returned
         if (followers <250000){
         unpop.push(asJson1.id)
-        console.log(asJson1)
         }
     }
     
@@ -124,3 +123,7 @@ export async function generateArtistImages(checkpop){
     
     
     }
+
+export default function(x){
+    console.log(x)
+}
