@@ -1,5 +1,6 @@
-import {requestOptions} from "./initialfetch.js"
+import {requestOptions, token} from "./initialfetch.js"
 import {checkRepeatingArtist,checkPopularity, checkIfUserFollows, generateArtistImages} from "./calls.js"
+import { myHeaders } from "./initialfetch.js";
 var boone;
 var artId;
 
@@ -10,7 +11,7 @@ export async function getTopArtist(){
     const artistids = [asJson.items[0].id, asJson.items[1].id, asJson.items[2].id, asJson.items[3].id, asJson.items[4].id]
     return artistids;
 }
-    
+    // SEED ARTISTS ARE THE USERS TOP 5 ARTISTS. WE USE THEM TO FIND SIMILIAR ARTISTS.
 export async function getSimiliarArtist(seedartists){
     const response = await fetch(`https://api.spotify.com/v1/recommendations?seed_artists=${seedartists[0]}%2C${seedartists[1]}%2C${seedartists[2]}%2C${seedartists[3]}%2C${seedartists[4]}&max_popularity=30&limit=100`, requestOptions)
     const asJson = await response.json();
@@ -18,34 +19,18 @@ export async function getSimiliarArtist(seedartists){
     checkRepeatingArtist(asJson,seedartists)
     .then(r=> {
         artId = checkIfUserFollows(r);
-        // boone = artId.json()
+        // RETURNS AN ITERATED LIST OF UNDRGRND ARTIST THAT THE USER DOES NOT FOLLOW
+        console.log(artId)
         return artId;
     })
     
-    .then(re=>{ console.log(re);
-       return checkPopularity(re)})
+    .then(re=>{
+        let item= checkPopularity(re);
+        return item;})
+        // BOONE IS SET EQUAL TO THE RETURNED ARRAY OF UNDRGRND ARTIST
     .then(res=> {
-        boone=generateArtistImages(res);
+        boone= res;
         console.log(boone);
-        return boone;
+        return boone;  // RETURNS THE USERS UNDRGRND
     })
-    .then(function(final){
-        return final;
-    })
-    // // .then(rsp=>{
-    // //     for (var i=0; i<rsp.length; i++){
-    // //         rsp[i].addEventListener("click", showGoal)
-    // //     }
-    // // })
-   
-    // .catch(error=> {console.log(error)});
 }
-
-// export async function main(){
-//     const seedartists = await getTopArtist();
-//     const similiarArtist = await getSimiliarArtist(seedartists);
-//     console.log(seedartists)
-// }
-
-// //this initiates all functions running
-// main()

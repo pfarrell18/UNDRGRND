@@ -1,5 +1,5 @@
 import authenticate from "./auth.js";
-import generateArtistImages from "./calls.js";
+import {generateArtistImages,checkPopularity} from "./calls.js";
 import {getSimiliarArtist,getTopArtist} from "./getArtists.js"
 const root = document.querySelector("#content");
 
