@@ -26,7 +26,7 @@ export async function checkPopularity(norepeat){
         const followers =  asJson1.followers.total
         // console.log(followers)
         //if the followers are lower than 250k (can be changed), we push it to the unpop array which is returned
-        if (followers <250000){
+        if (followers <50000){
         unpop.push(asJson1.id)
         }
     }
@@ -82,11 +82,13 @@ export async function generateArtistImages(checkpop){
         let artistId = checkpop[i]
         const response1 = await fetch(`https://api.spotify.com/v1/artists/${artistId}`, requestOptions)
         const asJson1 = await response1.json();
+        console.log(asJson1)
         
         let image = "no image loaded"
         if (asJson1.images.length ===0){
             const profpic = document.createElement("img")
-            profpic.setAttribute("src", ".images/undrgrnd_logo.png")
+            profpic.setAttribute("src", "./images/trans_logo.png")
+            profpic.classList.add("ug-replace")
             image = profpic
         }
         
@@ -94,7 +96,7 @@ export async function generateArtistImages(checkpop){
             const picUrl = asJson1.images[0].url
             const profpic = document.createElement("img")
             profpic.setAttribute("src", picUrl)
-            profpic.classList.add("underground") 
+            profpic.classList.add("artist-pic") 
             image = profpic
         }
         
@@ -106,15 +108,20 @@ export async function generateArtistImages(checkpop){
         const back = document.createElement("div");
         back.classList.add('back', 'hidden');
 
-        // fetch(GET `http(s)://api.qrserver.com/v1/create-qr-code/?data=${asJson1.url}&size=75 x75`)
-        // .then(response => response.json())
-        // .then(resp=>console.log(resp))
-        // let qrcode = document.createElement("img")
-        // qrcode.setAttribute("src",`https://api.qrserver.com/v1/create-qr-code/?data=${asJson1.url}&amp;size=100x100`)
-        // back.append(qrcode)
+
+        let pageLink = `https://open.spotify.com/artist/${artistId}`;
+        let qrLink = `https://api.qrserver.com/v1/create-qr-code/?data=${pageLink}&size=150x150`;
+        let qrImage = 'N/A';
+        
+        const qrcode = document.createElement("img");
+        qrcode.setAttribute("src",qrLink)
+        qrcode.classList.add("qr-Code");
+        qrImage= qrcode
+       
+
         const followers_in_thousands = Math.round(asJson1.followers.total/1000)
-        back.innerHTML= `${asJson1.name}'s follower total: ${followers_in_thousands}K`
-    
+        back.innerHTML= `Followers: ${followers_in_thousands}K`
+        back.append(qrImage)
         profile.append(name, back)
     
         div[0].append(profile)
