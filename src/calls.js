@@ -106,9 +106,9 @@ export async function generateArtistImages(checkpop){
         const back = document.createElement("div");
         back.classList.add('back', 'hidden');
 
-        fetch(GET `http(s)://api.qrserver.com/v1/create-qr-code/?data=${asJson1.url}&size=75 x75`)
-        .then(response => response.json())
-        .then(resp=>console.log(resp))
+        // fetch(GET `http(s)://api.qrserver.com/v1/create-qr-code/?data=${asJson1.url}&size=75 x75`)
+        // .then(response => response.json())
+        // .then(resp=>console.log(resp))
         // let qrcode = document.createElement("img")
         // qrcode.setAttribute("src",`https://api.qrserver.com/v1/create-qr-code/?data=${asJson1.url}&amp;size=100x100`)
         // back.append(qrcode)
