@@ -88,15 +88,15 @@ export async function generateArtistImages(checkpop){
         if (asJson1.images.length ===0){
             const profpic = document.createElement("img")
             profpic.setAttribute("src", "./images/trans_logo.png")
+            profpic.classList.add("ug-replace")
             image = profpic
         }
-        let pageLink = `https://api.spotify.com/v1/artists/${artistId}`;
-        let final12 = `https://api.qrserver.com/v1/create-qr-code/?data=${pageLink}&size=150x150`;
+        
         if (asJson1.images.length >1){
             const picUrl = asJson1.images[0].url
             const profpic = document.createElement("img")
             profpic.setAttribute("src", picUrl)
-            profpic.classList.add("underground") 
+            profpic.classList.add("artist-pic") 
             image = profpic
         }
         
@@ -108,15 +108,19 @@ export async function generateArtistImages(checkpop){
         const back = document.createElement("div");
         back.classList.add('back', 'hidden');
 
+
+        let pageLink = `https://open.spotify.com/artist/${artistId}`;
+        let qrLink = `https://api.qrserver.com/v1/create-qr-code/?data=${pageLink}&size=150x150`;
         let qrImage = 'N/A';
+        
         const qrcode = document.createElement("img");
-        qrcode.setAttribute("src",final12)
+        qrcode.setAttribute("src",qrLink)
         qrcode.classList.add("qr-Code");
         qrImage= qrcode
        
 
         const followers_in_thousands = Math.round(asJson1.followers.total/1000)
-        back.innerHTML= `${asJson1.name}'s follower total: ${followers_in_thousands}K`
+        back.innerHTML= `Followers: ${followers_in_thousands}K`
         back.append(qrImage)
         profile.append(name, back)
     
