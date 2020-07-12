@@ -1,20 +1,24 @@
 .logo{
-    position: fixed;
+    position: relative;
     margin: 10px;
 }
 video{
     width: 100%;
-    /* position: fixed; */
+    position: fixed;
     z-index: -1;
 }
 /* body{
     margin: 0;
     background-image: url('video.mp4');
 } */
-
-
 #content {
-    display: flex;
+    position: fixed;
+    bottom: 0;
+    background-image: ;
+    color: #f1f1f1;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
   }
 button{
     text-align: center;
