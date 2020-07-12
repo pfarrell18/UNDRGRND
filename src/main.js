@@ -24,6 +24,7 @@ if(!token || token === 'undefined' || expires_on === 'NaN' || Number(expires_on)
     .catch(error=>console.log(error))
 
 }
+
 async function main(){
     const seedartists = await getTopArtist();
     await getSimiliarArtist(seedartists)
@@ -34,3 +35,14 @@ async function main(){
     // console.log(similiarArtist)
 }
 main()
+
+const form = document.getElementsByClassName("form")
+const genreSearch = document.createElement("h3")
+genreSearch.innerHTML = "Want more? Use our genre search!"
+const genrebutton = document.createElement("button")
+const linkgenresearch = document.createElement("a")
+linkgenresearch.setAttribute("href", "genre.html")
+linkgenresearch.innerHTML = "Genre Search"
+genrebutton.append(linkgenresearch)
+console.log(genreSearch)
+form[0].append(genreSearch, genrebutton)
