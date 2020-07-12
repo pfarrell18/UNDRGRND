@@ -1,7 +1,7 @@
 import authenticate from "./auth.js";
-// import getTopArtist from "./calls.js";
+import {generateArtistImages,checkPopularity} from "./calls.js";
 import {getSimiliarArtist,getTopArtist} from "./getArtists.js"
-let root = document.querySelector('#content');
+const root = document.querySelector("#content");
 
 let token = localStorage.getItem('access_token');
 let expires_on = localStorage.getItem('expires_on');//expires on is when the token expires as a timestamp
@@ -27,7 +27,12 @@ if(!token || token === 'undefined' || expires_on === 'NaN' || Number(expires_on)
 
 async function main(){
     const seedartists = await getTopArtist();
-    const similiarArtist = await getSimiliarArtist(seedartists);
+    await getSimiliarArtist(seedartists)
+    .then(res=>{
+        console.log(res);
+        return res})
+
+    // console.log(similiarArtist)
 }
 main()
 
