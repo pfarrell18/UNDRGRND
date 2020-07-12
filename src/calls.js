@@ -1,6 +1,5 @@
 import {requestOptions} from "./initialfetch.js"
 
-
 export async function checkRepeatingArtist(json,seedartists){
     let nonrepeats = []
     for (var i=0; i<json.tracks.length; i++){
@@ -106,6 +105,13 @@ export async function generateArtistImages(checkpop){
     
         const back = document.createElement("div");
         back.classList.add('back', 'hidden');
+
+        fetch(GET `http(s)://api.qrserver.com/v1/create-qr-code/?data=${asJson1.url}&size=75 x75`)
+        .then(response => response.json())
+        .then(resp=>console.log(resp))
+        // let qrcode = document.createElement("img")
+        // qrcode.setAttribute("src",`https://api.qrserver.com/v1/create-qr-code/?data=${asJson1.url}&amp;size=100x100`)
+        // back.append(qrcode)
         const followers_in_thousands = Math.round(asJson1.followers.total/1000)
         back.innerHTML= `${asJson1.name}'s follower total: ${followers_in_thousands}K`
     

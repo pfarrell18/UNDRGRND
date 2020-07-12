@@ -33,3 +33,4 @@ function printUserInfo(json){
     .catch(error=>console.log(error))
 
 }
+
