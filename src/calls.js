@@ -1,4 +1,4 @@
-// import authenticate from "./auth.js";
+import {requestOptions} from "./initialfetch.js"
 
 
 export async function checkRepeatingArtist(json,seedartists){
@@ -35,15 +35,12 @@ export async function checkPopularity(norepeat){
 }
 
 export async function checkIfUserFollows(idarray){
-    // let asString = idarray.join("%2C")
-    
-    
-    new_artists = []
+    let new_artists = []
     for (var i=0; i<idarray.length; i++){
     const response = await fetch(`https://api.spotify.com/v1/me/following/contains?type=artist&ids=${idarray[i]}`, requestOptions)
-    const asJson = await response.json(); 
-    
-    if(asJson[0]==false){
+    const asJson = await response.json();
+
+    if(asJson[0]===false){
         new_artists.push(idarray[i])
     }
     }
@@ -57,6 +54,7 @@ export async function generateArtistImages(checkpop){
 
     //creates a div where everything will be pushed
         const div = document.getElementsByClassName("container")
+        console.log(div[0])
     
     //creates a div with an error message if no artists are returned 
         if (checkpop.length===0){
@@ -66,13 +64,14 @@ export async function generateArtistImages(checkpop){
         }
     
        //creates a header with "your artists are"
-        header = document.getElementsByClassName("header")
-        headertext = document.createElement("h2")
+        let header = document.getElementsByClassName("header")
+        let headertext = document.createElement("h2")
         headertext.innerHTML = "Your UNDR GRND artists are:"
+        console.log(header[0])
         header[0].append(headertext)
     
-        var element = document.getElementsByClassName("spinner");
-        element[0].children[0].innerHTML = ""
+        // let element = document.getElementsByClassName("spinner");
+        // element[0].children[0].innerHTML = ""
         // element[0].parentNode.removeChild(element)
     //iterates through all artists that meet criteria and creates a div with their info
     //it does this by calling the artist data api and uses their id number from check pop.
@@ -81,11 +80,11 @@ export async function generateArtistImages(checkpop){
     
         const profile = document.createElement("div")
         profile.classList.add("profile")
-        artistId = checkpop[i]
+        let artistId = checkpop[i]
         const response1 = await fetch(`https://api.spotify.com/v1/artists/${artistId}`, requestOptions)
         const asJson1 = await response1.json();
         
-        image = "no image loaded"
+        let image = "no image loaded"
         if (asJson1.images.length ===0){
             const profpic = document.createElement("img")
             profpic.setAttribute("src", ".images/undrgrnd_logo.png")
@@ -107,7 +106,7 @@ export async function generateArtistImages(checkpop){
     
         const back = document.createElement("div");
         back.classList.add('back', 'hidden');
-        followers_in_thousands = Math.round(asJson1.followers.total/1000)
+        const followers_in_thousands = Math.round(asJson1.followers.total/1000)
         back.innerHTML= `${asJson1.name}'s follower total: ${followers_in_thousands}K`
     
         profile.append(name, back)
