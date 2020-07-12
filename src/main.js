@@ -1,7 +1,7 @@
 import authenticate from "./auth.js";
-import {generateArtistImages,checkPopularity} from "./calls.js";
+// import getTopArtist from "./calls.js";
 import {getSimiliarArtist,getTopArtist} from "./getArtists.js"
-const root = document.querySelector("#content");
+let root = document.querySelector('#content');
 
 let token = localStorage.getItem('access_token');
 let expires_on = localStorage.getItem('expires_on');//expires on is when the token expires as a timestamp
@@ -13,6 +13,15 @@ if(!token || token === 'undefined' || expires_on === 'NaN' || Number(expires_on)
     root.append(loginButton);
 } else {
 
+
+
+function printUserInfo(json){
+    let name = document.getElementsByClassName("name")
+    let userinfo = document.createElement("h1")
+    userinfo.innerHTML = `Welcome to UNDR GRND, ${json.display_name}`
+    console.log(userinfo)
+    name[0].append(userinfo)
+}
     //Here you can start you app with fetch and all that using the token etc
     fetch(`https://api.spotify.com/v1/me`, {
       headers:{
@@ -20,29 +29,7 @@ if(!token || token === 'undefined' || expires_on === 'NaN' || Number(expires_on)
       }  
     })
     .then(resp=>resp.json())
-    .then(json=>console.log(json))
+    .then(json=>printUserInfo(json))
     .catch(error=>console.log(error))
 
 }
-
-async function main(){
-    const seedartists = await getTopArtist();
-    await getSimiliarArtist(seedartists)
-    .then(res=>{
-        console.log(res);
-        return res})
-
-    // console.log(similiarArtist)
-}
-main()
-
-const form = document.getElementsByClassName("form")
-const genreSearch = document.createElement("h3")
-genreSearch.innerHTML = "Want more? Use our genre search!"
-const genrebutton = document.createElement("button")
-const linkgenresearch = document.createElement("a")
-linkgenresearch.setAttribute("href", "genre.html")
-linkgenresearch.innerHTML = "Genre Search"
-genrebutton.append(linkgenresearch)
-console.log(genreSearch)
-form[0].append(genreSearch, genrebutton)
