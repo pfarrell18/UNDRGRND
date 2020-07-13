@@ -29,7 +29,7 @@ export async function checkPopularity(norepeat) {
 		const followers = asJson1.followers.total;
 		// console.log(followers)
 		//if the followers are lower than 250k (can be changed), we push it to the unpop array which is returned
-		if (followers < 50000) {
+		if (followers < 150000) {
 			unpop.push(asJson1.id);
 		}
 	}
