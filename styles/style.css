@@ -1,9 +1,9 @@
 /*
-  font-family: 'Arimo', sans-serif;
-font-family: 'Spartan', sans-serif;
+	font-family: 'Arimo', sans-serif;
+	font-family: 'Spartan', sans-serif;
 */
-html{
-  font-family: 'Arimo', sans-serif;
+html {
+	font-family: "Arimo", sans-serif;
 }
 h1,
 h2 {
@@ -26,43 +26,49 @@ h3 {
 	border-top-left-radius: 15%;
 }
 
+.undr-grnd {
+	color: #ffffff;
+}
+
 .header {
-  display: block;
-  justify-content: flex-end;
-  background-color: #595b58ad;
-  text-align: end;
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;
+	display: block;
+	justify-content: flex-end;
+	background-color: #595b5800;
+	text-align: end;
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
 }
 /* Add a black background color to the top navigation */
 .topnav {
-  background-color: #3330;
-  overflow: hidden;
-  float: right;
-  position: sticky;
-  margin-top: 40px;
+	background-color: #3330;
+	overflow: hidden;
+	float: right;
+	position: sticky;
+	margin-top: 40px;
+	font-family: lat;
 }
 /* Style the links inside the navigation bar */
 .topnav a {
-  float: right;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
+	float: right;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 17px;
+	border-top-left-radius: 35%;
 }
 
 /* Change the color of links on hover */
 .topnav a:hover {
-  background-color: #ddd;
-  color: black;
+	background-color: #ddd;
+	color: black;
 }
 
 /* Add a color to the active/current link */
 .topnav a.active {
-  background-color: #ffda10;
-  color: white;
+	background-color: #ffda10;
+	color: #000000;
 }
 
 .hero-title {
@@ -87,21 +93,21 @@ h3 {
 	margin-top: 100px;
 }
 .heading {
-  background-image: url(/images/background.jpg);
-  margin: 0;
-  height: 900px;
-  background-size: cover;
+	background-image: url(/images/abst_3.jpg);
+	margin: 0;
+	height: 900px;
+	background-size: cover;
 }
 .aheading {
-  background-image: url(/images/background.jpg);
-  margin: 0;
-  height: 100px;
-  background-size: cover;
+	background-image: url(/images/abst_3.jpg);
+	margin: 0;
+	height: 100px;
+	background-size: cover;
 }
-.menu-bar{
-  background-color: #595b58b8;
-  box-shadow: 0 8px 6px -6px black;
-  height: 100px;
+.menu-bar {
+	background-color: #000000; /* #595b58b8 */
+	/* box-shadow: 0 8px 6px -6px black; */
+	height: 100px;
 }
 
 .name {
@@ -134,13 +140,15 @@ h3 {
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	background-color: none;
+	background-color: black;
+	color: white;
 	border-radius: 10px;
 	margin-left: 45%;
 	margin-right: 45%;
 	padding: 14px;
 	width: 200px;
 	height: 50px;
+	font-size: 18px;
 }
 
 .logo {
@@ -171,8 +179,8 @@ video {
 	position: fixed;
 	z-index: -1;
 }
-body{
-    margin: 0;
+body {
+	margin: 0;
 }
 #content {
 	position: fixed;
@@ -190,7 +198,7 @@ button {
 	padding: 10px;
 }
 /* .profile:hover{
-  
+
 }  */
 button {
 	background-color: #ffda10;
@@ -198,9 +206,11 @@ button {
 	font-size: 15px;
 	padding: 20px;
 	margin-left: 45%;
-	margin-right: 40%;
+	margin-right: 45%;
 	margin-top: 30px;
-	color: #595d58;
+	margin-bottom: 30px;
+	color: #000000; /* #595d58 /*OG Grey*/
+	text-decoration: none;
 	border-radius: 15px;
 	font-family: Poppins-Regular, sans-serif;
 	box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
@@ -215,15 +225,22 @@ button:hover {
 	font-size: 15px;
 	padding: 20px;
 	margin-left: 45%;
-	margin-right: 40%;
+	margin-right: 45%;
 	margin-top: 30px;
-	color: #ffda10;
+	margin-bottom: 30px;
+	text-decoration: none;
+	color: #ffffff;
 	border-radius: 15px;
 	font-family: Poppins-Regular, sans-serif;
 	box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
 		0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
 		0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
 		0 100px 80px rgba(0, 0, 0, 0.12);
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
 }
 
 /* img */
@@ -233,26 +250,27 @@ button:hover {
 	height: 150px;
 	border-radius: 50%;
 }
-#abstract{
-  background-image: url("/images/abstract1.png");
-  background-size: contain;
+#abstract {
+	background-image: url("/images/abstract1.png");
+	background-size: contain;
 }
-#abstract1{
-  background-image: url("/images/abstract1.png");
+#abstract1 {
+	background-image: url("/images/abstract1.png");
 }
-#headText{
-  margin-top: 0;
+#headText {
+	margin-top: 0;
 }
-h2{margin-top: 0;
+h2 {
+	margin-top: 0;
 }
 .container {
 	display: flex;
 	flex-direction: row;
-  flex-wrap: wrap;
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;
-  justify-content: center;
+	flex-wrap: wrap;
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
+	justify-content: center;
 }
 
 .profile {
@@ -309,43 +327,42 @@ h2{margin-top: 0;
 	}
 }
 
-
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(247, 210, 4, 0.7); /* Black w/ opacity */
-  }
-  
-  /* Modal Content */
-  .modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    font-family:'Poppins', sans-serif;
-  }
-  
-  /* The Close Button */
-  .close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    font-family:'Poppins', sans-serif;
-  }
-  
-  .close:hover,
-  .close:focus{
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-  }
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(247, 210, 4, 0.7); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+	background-color: #fefefe;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%;
+	font-family: "Poppins", sans-serif;
+}
+
+/* The Close Button */
+.close {
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+	font-family: "Poppins", sans-serif;
+}
+
+.close:hover,
+.close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}

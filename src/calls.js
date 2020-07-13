@@ -69,7 +69,8 @@ export async function generateArtistImages(checkpop) {
 	//creates a header with "your artists are"
 	let header = document.getElementsByClassName("header");
 	let headertext = document.createElement("h2");
-	headertext.innerHTML = "<p id = 'headText'>Meet Your<br> <ug>UNDR<br>GRND</ug> <br>Artists:</p>";
+	headertext.innerHTML =
+		"<p id = 'headText'>Meet Your<br> <ug>UNDR<br>GRND</ug> <br>Artists:</p>";
 	console.log(header[0]);
 	header[0].append(headertext);
 
