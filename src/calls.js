@@ -29,7 +29,7 @@ export async function checkPopularity(norepeat) {
 		const followers = asJson1.followers.total;
 		// console.log(followers)
 		//if the followers are lower than 250k (can be changed), we push it to the unpop array which is returned
-		if (followers < 250000) {
+		if (followers < 50000) {
 			unpop.push(asJson1.id);
 		}
 	}
@@ -69,7 +69,7 @@ export async function generateArtistImages(checkpop) {
 	//creates a header with "your artists are"
 	let header = document.getElementsByClassName("header");
 	let headertext = document.createElement("h2");
-	headertext.innerHTML = "Your UNDR GRND artists are...";
+	headertext.innerHTML = "<p id = 'headText'>Meet Your<br> <ug>UNDR<br>GRND</ug> <br>Artists:</p>";
 	console.log(header[0]);
 	header[0].append(headertext);
 
@@ -92,7 +92,7 @@ export async function generateArtistImages(checkpop) {
 		let image = "no image loaded";
 		if (asJson1.images.length === 0) {
 			const profpic = document.createElement("img");
-			profpic.setAttribute("src", "./images/ug_yellowback.png");
+			profpic.setAttribute("src", "./images/no_photo.png");
 			profpic.classList.add("ug-replace");
 			image = profpic;
 		}
