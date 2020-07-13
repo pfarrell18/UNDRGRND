@@ -1,0 +1,254 @@
+/*
+  font-family: 'Lato', sans-serif;
+  font-family: 'Oswald', sans-serif;
+*/
+
+h1,
+h2 {
+	font-family: "Lato", sans-serif;
+	font-weight: 700;
+	font-size: 70px;
+}
+
+h3 {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	font-family: "Lato", sans-serif;
+	font-weight: 700;
+	font-size: 70px;
+	background-color: #000000;
+	color: #ffffff;
+	padding: 40px;
+	border-bottom-right-radius: 15%;
+	border-top-left-radius: 15%;
+}
+
+.header {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.hero-title {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.hero-sub-title {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	color: #cccccc;
+	margin: -20px;
+}
+
+.blob {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	margin-right: -30px;
+	margin-top: 100px;
+}
+/* .heading{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+} */
+
+.name {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.title {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	font-family: "Lato", sans-serif;
+}
+
+.genre-choice {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	background-color: none;
+	border-radius: 10px;
+	margin-left: 45%;
+	margin-right: 45%;
+	padding: 14px;
+}
+
+.genre-select {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	background-color: none;
+	border-radius: 10px;
+	margin-left: 45%;
+	margin-right: 45%;
+	padding: 14px;
+	width: 200px;
+	height: 50px;
+}
+
+.logo {
+	position: relative;
+	margin: 10px;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+}
+
+/* .logo {
+	position: relative;
+	margin: -35px;
+} */
+
+.dc_logo {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	width: 200px;
+	height: 40%;
+	margin-left: 43%;
+}
+
+video {
+	width: 100%;
+	position: fixed;
+	z-index: -1;
+}
+/* body{
+    margin: 0;
+    background-image: url('video.mp4');
+} */
+#content {
+	position: fixed;
+	bottom: 0;
+	color: #f1f1f1;
+	width: 100%;
+	padding: 20px;
+	text-align: center;
+}
+button {
+	text-align: center;
+}
+
+.container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	/* display: flex;
+	flex-direction: row;
+	flex-wrap: wrap; */
+}
+.profile {
+	padding: 10px;
+}
+button {
+	background-color: #09cc4d;
+	border: none;
+	font-size: 15px;
+	padding: 20px;
+	margin-left: 45%;
+	margin-right: 40%;
+	margin-top: 30px;
+	color: #ffffff;
+	border-radius: 15px;
+	font-family: Poppins-Regular, sans-serif;
+	box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+		0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+		0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+		0 100px 80px rgba(0, 0, 0, 0.12);
+}
+
+button:hover {
+	background-color: #0bdb54;
+	border: none;
+	font-size: 15px;
+	padding: 20px;
+	margin-left: 45%;
+	margin-right: 40%;
+	margin-top: 30px;
+	color: #ffffff;
+	border-radius: 15px;
+	font-family: Poppins-Regular, sans-serif;
+	box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+		0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+		0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+		0 100px 80px rgba(0, 0, 0, 0.12);
+}
+
+/* img */
+.artist-pic,
+.ug-replace {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+}
+
+.container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.profile {
+	display: flex;
+	padding: 10 px 10px;
+	width: 150px;
+	text-align: center;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+.hidden {
+	display: none;
+}
+
+.lds-facebook {
+	display: inline-block;
+	position: relative;
+	width: 80px;
+	height: 80px;
+	align-content: center;
+}
+
+/* this is for the loading bar  */
+.lds-facebook div {
+	display: inline-block;
+	position: absolute;
+	left: 8px;
+	width: 16px;
+	background: yellow;
+	animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+.lds-facebook div:nth-child(1) {
+	left: 8px;
+	animation-delay: -0.24s;
+}
+.lds-facebook div:nth-child(2) {
+	left: 32px;
+	animation-delay: -0.12s;
+}
+.lds-facebook div:nth-child(3) {
+	left: 56px;
+	animation-delay: 0;
+}
+@keyframes lds-facebook {
+	0% {
+		top: 8px;
+		height: 64px;
+	}
+	50%,
+	100% {
+		top: 24px;
+		height: 32px;
+	}
+}
