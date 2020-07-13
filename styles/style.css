@@ -5,9 +5,11 @@ font-family: 'Spartan', sans-serif;
 html{
   font-family: 'Arimo', sans-serif;
 }
-h1,
+h1{
+  font-family: 'Spartan', sans-serif;
+  margin: 0;
+}
 h2 {
-	font-family: "Lato", sans-serif;
 	font-weight: 700;
 	font-size: 70px;
 }
@@ -16,7 +18,6 @@ h3 {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	font-family: "Lato", sans-serif;
 	font-weight: 700;
 	font-size: 70px;
 	background-color: #000000;
@@ -25,7 +26,12 @@ h3 {
 	border-bottom-right-radius: 15%;
 	border-top-left-radius: 15%;
 }
-
+.landing-photo{
+  border-radius: 50%;
+  height: 70%;
+  width: 35%;
+  box-shadow: 0 8px 6px -1px black;
+}
 .header {
   display: block;
   justify-content: flex-end;
@@ -89,7 +95,7 @@ h3 {
 .heading {
   background-image: url(/images/background.jpg);
   margin: 0;
-  height: 900px;
+  height: 1000px;
   background-size: cover;
 }
 .aheading {
@@ -101,7 +107,13 @@ h3 {
 .menu-bar{
   background-color: #595b58b8;
   box-shadow: 0 8px 6px -6px black;
-  height: 100px;
+  height: 70px;
+  display: flex;
+}
+.menu_bar{
+  background-color: #595b58b8;
+  height: 70px;
+  display: flex;
 }
 
 .name {
@@ -114,7 +126,7 @@ h3 {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	font-family: "Lato", sans-serif;
+	font-family: "ari]", sans-serif;
 }
 
 .genre-choice {
@@ -226,7 +238,7 @@ button:hover {
 		0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
 		0 100px 80px rgba(0, 0, 0, 0.12);
 }
-
+ug{font-family: 'Spartan', sans-serif;}
 /* img */
 .artist-pic,
 .ug-replace {
@@ -350,3 +362,24 @@ h2{margin-top: 0;
     text-decoration: none;
     cursor: pointer;
   }
+#left-home{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+ugspan{
+  color: #ffffff;
+}
+
+
+.subhead {
+  font-size: xx-large;
+  color: white;
+  background-color: #595b58;
+  box-shadow: -1px 6px 9px black;
+}
+.h1-user{
+  text-align: end;
+  box-shadow: -1px 6px 9px black;
+}

@@ -18,8 +18,9 @@ if (
 	root.append(loginButton);
 } else {
 	function printUserInfo(json) {
-		let name = document.getElementsByClassName("name");
+		let name = document.getElementsByClassName("heading");
 		let userinfo = document.createElement("h1");
+		userinfo.classList.add('h1-user')
 		userinfo.innerHTML = `Welcome to UNDR GRND, <br> ${json.display_name}!`;
 		console.log(userinfo);
 		name[0].append(userinfo);
